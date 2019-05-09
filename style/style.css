@@ -1,0 +1,12 @@
+[data-viewtest]:before{
+  content:'';
+}
+[data-viewtest='true']{
+  padding: 150vh auto 50px auto!important;
+}
+[data-viewtest='false']{
+  padding: 0 auto!important;
+}
+[data-viewtest='true']:before{
+  content:'scroll to position';
+}

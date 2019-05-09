@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Test Prebid </title>
+    <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
+    <script>
+
+      function parse_query_string(query) {
+        var vars = query.split("&");
+        var query_string = {};
+        for (var i = 0; i < vars.length; i++) {
+          var pair = vars[i].split("=");
+          var key = decodeURIComponent(pair[0]);
+          var value = decodeURIComponent(pair[1]);
+          if (typeof query_string[key] === "undefined") {
+            query_string[key] = decodeURIComponent(value);
+          } else if (typeof query_string[key] === "string") {
+            var arr = [query_string[key], decodeURIComponent(value)];
+            query_string[key] = arr;
+          } else {
+            query_string[key].push(decodeURIComponent(value));
+          }
+        }
+        return query_string;
+      }
+
+      var pb = {
+        "2.1.0": "prebid2.1.0",
+        "2.0.0": "prebid2.0.0",
+        "2.2.0": "prebid2.2.0.js",
+        "1.4.0": "prebid1.40.0.js",
+        "1.39.0":"prebid1.39.0.js",
+        "1.37.0":"prebid1.37.0.js",
+        "2.3.0": "prebid2.3.0.js",
+        "2.4.0": "prebid2.4.0.js",
+      }
+
+
+
+      var url = "prebid" + parse_query_string(window.location.search.substring(1)).pbversion + ".js";
+
+      document.write("<script src=" + url + "><\/script>");
+
+
+    </script>
+
+
+    <script>
+
+    let env = parse_query_string(top.window.location.search.substring(1)).env ? parse_query_string(top.window.location.search.substring(1)).env : '';
+
+    let placement = parse_query_string(top.window.location.search.substring(1)).Placement ? parse_query_string(top.window.location.search.substring(1)).Placement : 'adea0d4923d6cebda40622f0c9aef677';
+
+
+      var sizes = [
+           [300, 250]
+       ];
+       var PREBID_TIMEOUT = 1000;
+       var FAILSAFE_TIMEOUT = 3000;
+
+       var adUnits = [{
+           code: "/19968336/header-bid-tag-1",
+           mediaTypes: {
+               banner: {
+                   sizes: sizes
+               }
+           },
+           bids: [{
+               bidder: "adyoulike",
+               params: {
+                   placement: `${placement}`,
+                   DC: `${env}`
+               }
+           }]
+       }];
+
+       var googletag = googletag || {};
+       googletag.cmd = googletag.cmd || [];
+       googletag.cmd.push(function() {
+           googletag.pubads().disableInitialLoad();
+       });
+
+       var pbjs = pbjs || {};
+       pbjs.que = pbjs.que || [];
+
+       pbjs.que.push(function() {
+           pbjs.addAdUnits(adUnits);
+           pbjs.requestBids({
+               bidsBackHandler: initAdserver,
+               timeout: PREBID_TIMEOUT
+           });
+       });
+
+       function initAdserver() {
+           if (pbjs.initAdserverSet) return;
+           pbjs.initAdserverSet = true;
+           googletag.cmd.push(function() {
+               pbjs.setTargetingForGPTAsync && pbjs.setTargetingForGPTAsync();
+               googletag.pubads().refresh();
+           });
+       }
+
+       // in case PBJS doesn't load
+       setTimeout(function() {
+           initAdserver();
+       }, FAILSAFE_TIMEOUT);
+
+       googletag.cmd.push(function() {
+           googletag.defineSlot('/19968336/header-bid-tag-1', sizes, 'div-1')
+             .addService(googletag.pubads());
+           googletag.pubads().enableSingleRequest();
+           googletag.enableServices();
+       });
+
+    </script>
+
+  </head>
+  <body style="margin:0;padding:0;">
+
+
+    <div id='div-1'>
+        <script type='text/javascript'>
+            googletag.cmd.push(function() {
+                googletag.display('div-1');
+            });
+
+        </script>
+    </div>
+  </body>
+</html>

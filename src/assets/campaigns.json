@@ -1,0 +1,56 @@
+[
+  {
+    "id": "f1c80d4bb5643c222ae8de75e9b2f991",
+    "campaign_type": "adserver",
+    "line_type": "traffic",
+    "opener": "redirect",
+    "asset": "internal",
+    "clickthrough": "true",
+    "option": ""
+  },
+  {
+    "id": "351e5750d1bc37f1f86d49625b137e92",
+    "campaign_type": "adserver",
+    "line_type": "traffic",
+    "opener": "redirect",
+    "asset": "external",
+    "clickthrough": "true",
+    "option": ""
+  },
+  {
+    "id": "c083934673cf4d6a11636c76d3f6b833",
+    "campaign_type": "adserver",
+    "line_type": "traffic",
+    "opener": "fullscreen",
+    "asset": "internal",
+    "clickthrough": "true",
+    "option": ""
+  },
+  {
+    "id": "f977d5cc8a9ecd866b2354032140e502",
+    "campaign_type": "adserver",
+    "line_type": "traffic",
+    "opener": "fullscreen",
+    "asset": "external",
+    "clickthrough": "true",
+    "option": ""
+  },
+  {
+    "id": "5a42baa9817bf0520b10e5e66a32f8a2",
+    "campaign_type": "adserver",
+    "line_type": "traffic",
+    "opener": "popin",
+    "asset": "internal",
+    "clickthrough": "true",
+    "option": "secondary url"
+  },
+  {
+    "id": "d89893ce2612dc99e012970a83797d4f",
+    "campaign_type": "adserver",
+    "line_type": "traffic",
+    "opener": "popin",
+    "asset": "external",
+    "clickthrough": "true",
+    "option": ""
+  }
+]
